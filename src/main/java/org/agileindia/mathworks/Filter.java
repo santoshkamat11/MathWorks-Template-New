@@ -18,16 +18,6 @@ public class Filter {
         return primeNumbers;
     }
 
-    public static Predicate<Integer> where(Predicate<Integer> first, Predicate<Integer> ...remaining) {
-        return Stream.of(remaining).reduce(first, (acc, next) -> acc.or(next));
-    }
-
-    public static List<Integer> select(Predicate<Integer> predicate, Integer ...numbers) {
-        return Stream.of(numbers)
-                .filter(predicate)
-                .collect(Collectors.toList());
-    }
-
     private static boolean isPrime(Integer number) {
         if (number < 2) {
             return false;
