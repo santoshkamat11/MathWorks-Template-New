@@ -15,22 +15,22 @@ public class Filter {
     }
 
     private static boolean isPerfect(int number) {
-        if (number <= 0)
-            return false;
-
-        List<Integer> factors = new ArrayList<>();
-        for (int i = 1; i <= number; i++) {
-            if (number % i == 0) {
-                factors.add(i);
+        if (number > 0) {
+            List<Integer> factors = new ArrayList<>();
+            for (int i = 1; i <= number; i++) {
+                if (number % i == 0) {
+                    factors.add(i);
+                }
             }
+            // Sum of factors
+            int sumOfFactors = 0;
+            for (Integer i : factors) {
+                sumOfFactors += i;
+            }
+            // It is a perfect number if the difference between sum of factors and the
+            // number is equal to the number itself
+            return sumOfFactors - number == number;
         }
-        // Sum of factors
-        int sumOfFactors = 0;
-        for (Integer i : factors) {
-            sumOfFactors += i;
-        }
-        // It is a perfect number if the difference between sum of factors and the
-        // number is equal to the number itself
-        return sumOfFactors - number == number;
+        return false;
     }
 }
