@@ -1,32 +1,36 @@
 package org.agileindia.mathworks;
 
-
 import java.util.ArrayList;
 import java.util.List;
-import java.util.function.Predicate;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 public class Filter {
-    public static List<Integer> selectPrime(List<Integer> numbers) {
-        List<Integer> primeNumbers = new ArrayList<Integer>();
+    public static List<Integer> selectPerfect(List<Integer> numbers) {
+        List<Integer> perfectNumbers = new ArrayList<>();
         for (Integer number : numbers) {
-            if (isPrime(number)) {
-                primeNumbers.add(number);
+            if (isPerfect(number)) {
+                perfectNumbers.add(number);
             }
         }
-        return primeNumbers;
+        return perfectNumbers;
     }
 
-    private static boolean isPrime(Integer number) {
-        if (number < 2) {
+    private static boolean isPerfect(int number) {
+        if (number <= 0)
             return false;
-        }
-        for (long i = 2; i < number; i++) {
+
+        List<Integer> factors = new ArrayList<>();
+        for (int i = 1; i <= number; i++) {
             if (number % i == 0) {
-                return false;
+                factors.add(i);
             }
         }
-        return true;
+        // Sum of factors
+        int sumOfFactors = 0;
+        for (Integer i : factors) {
+            sumOfFactors += i;
+        }
+        // It is a perfect number if the difference between sum of factors and the
+        // number is equal to the number itself
+        return sumOfFactors - number == number;
     }
 }
