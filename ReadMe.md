@@ -1,5 +1,5 @@
 # MathWorks
-Mathworks is a kids game for the kids who are starting to make sense of the types of numbers, for example primes, odds, multiples of a number, squares, set etc...  You could imagine a Paint-brush like UI with a function-tool box on the left and with 2 buckets, one empty and another full of numbers.  A kid selects a filter and places it on the empty bucket and then drops the bucket of full on to the empty bucket as shown in the diagram below:
+Mathworks is a kids game for the kids who are starting to make sense of the types of numbers, for example perfects, odds, multiples of a number, squares, set etc...  You could imagine a Paint-brush like UI with a function-tool box on the left and with 2 buckets, one empty and another full of numbers.  A kid selects a filter and places it on the empty bucket and then drops the bucket of full on to the empty bucket as shown in the diagram below:
 
 ![mathworks-ui.jpg](stories/mathworks-ui.jpg)
 
@@ -12,24 +12,23 @@ MathWorks First story is already implemented.
 
 ```
 As a Kid learning mathematics,
-I want to be able to identify prime numbers
-So that I can understand what primes are.
+I want to be able to identify perfect numbers
+So that I can understand what perfects are.
 ```
 
 **Acceptance Criteria #1**
 
 ```
-Given numbers 1, 2, 3, and 4
-When using Prime filter and emptying contents of the source bucket to target bucket
-Then target bucket should contain 2 and 3.
-
+Given numbers 1, 2, 3, 4, 5, 6, 10 and 28
+When using Perfect filter and emptying contents of the source bucket to target bucket
+Then target bucket should contain 6 and 28.
 ```
 **Acceptance Criteria #2**
 
 ```
-Given numbers -1, -2, 3, and 4
-When using Prime filter and emptying contents of the source bucket to target bucket
-Then target bucket should contain 3.
+Given numbers -2, -1, 0, and 6
+When using Perfect filter and emptying contents of the source bucket to target bucket
+Then target bucket should contain 6.
 ```
 
 You are now hired by MathWorks and tasked with implementing from Story #2 onwards.  You may download the [story slides](stories/mathworks-kids-game.pdf). 
