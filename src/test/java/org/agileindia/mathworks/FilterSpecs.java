@@ -19,7 +19,6 @@ public class FilterSpecs {
         List<Integer> perfectNumbers = Filter.selectPerfect(numbers);
 
         //Then
-        System.out.println("perfectNumbers = " + perfectNumbers);
         assertThat(perfectNumbers, hasSize(2));
         assertThat(perfectNumbers, hasItems(6, 28));
     }
