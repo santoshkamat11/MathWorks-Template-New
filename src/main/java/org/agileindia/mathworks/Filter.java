@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Filter {
-    public static List<Integer> selectPerfect(List<Integer> numbers) {
+    public static List<Integer>  selectPerfect(List<Integer> numbers) {
         List<Integer> perfectNumbers = new ArrayList<>();
         for (Integer number : numbers) {
             if (isPerfect(number)) {
