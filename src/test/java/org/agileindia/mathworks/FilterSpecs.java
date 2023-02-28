@@ -35,4 +35,40 @@ public class FilterSpecs {
         assertThat(primeNumbers, hasSize(1));
         assertThat(primeNumbers, hasItem(6));
     }
+
+    @Test
+    public void ac1ForEvenNumbers(){
+        //Given
+        List<Integer> numbers = Arrays.asList(1, 2, 3, 4);
+
+        List<Integer> evenNumbers = Filter.selectEvens(numbers);
+
+        //Then
+        assertThat(evenNumbers , hasSize(2));
+        assertThat(evenNumbers, hasItems(2, 4));
+    }
+
+    @Test
+    public void ac2ForEvenNumbers(){
+        //Given
+        List<Integer> numbers = Arrays.asList(1, 2, -4);
+
+        List<Integer> evenNumbers = Filter.selectEvens(numbers);
+
+        //Then
+        assertThat(evenNumbers , hasSize(2));
+        assertThat(evenNumbers, hasItems(2, -4));
+    }
+
+    @Test
+    public void isEvenAndPerfect(){
+        //Given
+        List<Integer> numbers = Arrays.asList(1, 2, 3 , 6 ,8 , 27 , 28);
+
+        List<Integer> evenAndPerfectNumbers = Filter.selectEvenAndPerfect(numbers);
+
+        //Then
+        assertThat(evenAndPerfectNumbers , hasSize(2));
+        assertThat(evenAndPerfectNumbers, hasItems(6, 28));
+    }
 }

@@ -1,7 +1,9 @@
 package org.agileindia.mathworks;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Filter {
     public static List<Integer> selectPerfect(List<Integer> numbers) {
@@ -32,5 +34,17 @@ public class Filter {
             return sumOfFactors - number == number;
         }
         return false;
+    }
+
+    public static List<Integer> selectEvens(List<Integer> numbers){
+        return numbers.stream().filter(Filter::isEven).collect(Collectors.toList());
+    }
+
+    public static boolean isEven(Integer number){
+        return number % 2 == 0;
+    }
+
+    public static List<Integer> selectEvenAndPerfect(List<Integer> numbers){
+        return numbers.stream().filter(n -> isEven(n) && isPerfect(n)).collect(Collectors.toList());
     }
 }
