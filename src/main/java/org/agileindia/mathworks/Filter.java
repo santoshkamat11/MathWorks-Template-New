@@ -3,17 +3,12 @@ package org.agileindia.mathworks;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 public class Filter {
     public static List<Integer> selectPerfect(List<Integer> numbers) {
-        List<Integer> perfectNumbers = new ArrayList<>();
-        for (Integer number : numbers) {
-            if (isPerfect(number)) {
-                perfectNumbers.add(number);
-            }
-        }
-        return perfectNumbers;
+        return filteredNumbers(numbers, Filter::isPerfect);
     }
 
     private static boolean isPerfect(int number) {
@@ -36,8 +31,20 @@ public class Filter {
         return false;
     }
 
-    public static List<Integer> selectEvens(List<Integer> numbers){
-        return numbers.stream().filter(Filter::isEven).collect(Collectors.toList());
+
+
+    public static List<Integer> selectEvens(List<Integer> numbers) {
+        return filteredNumbers(numbers, Filter::isEven);
+    }
+
+    private static List<Integer> filteredNumbers(List<Integer> numbers, Predicate<Integer> predicate) {
+        List<Integer> filteredNumbers = new ArrayList<>();
+        for (Integer number : numbers) {
+            if (predicate.test(number)) {
+                filteredNumbers.add(number);
+            }
+        }
+        return filteredNumbers;
     }
 
     public static boolean isEven(Integer number){
