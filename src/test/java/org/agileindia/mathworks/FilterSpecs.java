@@ -1,6 +1,5 @@
 package org.agileindia.mathworks;
 
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
@@ -16,7 +15,7 @@ public class FilterSpecs {
         List<Integer> numbers = Arrays.asList(1, 2, 3, 4, 5, 6, 10, 28);
 
         //When
-        List<Integer> perfectNumbers = Filter.selectPerfect(numbers);
+        List<Integer> perfectNumbers = Filter.select(numbers,Filter.PERFECT);
 
         //Then
         assertThat(perfectNumbers, hasSize(2));
@@ -29,7 +28,7 @@ public class FilterSpecs {
         List<Integer> numbers = Arrays.asList(-2, -1, 0, 6);
 
         //When
-        List<Integer> primeNumbers = Filter.selectPerfect(numbers);
+        List<Integer> primeNumbers = Filter.select(numbers, Filter.PERFECT);
 
         //Then
         assertThat(primeNumbers, hasSize(1));
@@ -37,38 +36,40 @@ public class FilterSpecs {
     }
 
     @Test
-    public void ac1ForEvenNumbers(){
+    public void itSelectsEvenNumbers() {
         //Given
         List<Integer> numbers = Arrays.asList(1, 2, 3, 4);
 
-        List<Integer> evenNumbers = Filter.selectEvens(numbers);
+        //When
+        List<Integer> evenNumbers = Filter.select(numbers, Filter.EVEN);
 
         //Then
-        assertThat(evenNumbers , hasSize(2));
-        assertThat(evenNumbers, hasItems(2, 4));
+        assertThat(evenNumbers, hasItems(2,4));
     }
 
     @Test
-    public void ac2ForEvenNumbers(){
+    public void itSelectsEvenNumbersEvenIfNegatives() {
         //Given
         List<Integer> numbers = Arrays.asList(1, 2, -4);
 
-        List<Integer> evenNumbers = Filter.selectEvens(numbers);
+        //When
+        List<Integer> evenNumbers = Filter.select(numbers,Filter.EVEN);
+        //List<Integer> evenNumbers = Filter.selectEven(numbers);
 
         //Then
-        assertThat(evenNumbers , hasSize(2));
-        assertThat(evenNumbers, hasItems(2, -4));
+        assertThat(evenNumbers, hasItems(2,-4));
     }
 
     @Test
-    public void isEvenAndPerfect(){
+    public void itSelectsEvenAndPerfectNumbers() {
         //Given
-        List<Integer> numbers = Arrays.asList(1, 2, 3 , 6 ,8 , 27 , 28);
+        List<Integer> numbers = Arrays.asList(1, 2, 3, 6, 8, 27, 28);
 
-        List<Integer> evenAndPerfectNumbers = Filter.selectEvenAndPerfect(numbers);
+        //When
+        List<Integer> evenPerfectNumbers = Filter.select(numbers,Filter.EVEN,Filter.PERFECT);
 
         //Then
-        assertThat(evenAndPerfectNumbers , hasSize(2));
-        assertThat(evenAndPerfectNumbers, hasItems(6, 28));
+        assertThat(evenPerfectNumbers, hasItems(6,28));
     }
+
 }

@@ -1,57 +1,66 @@
 package org.agileindia.mathworks;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.function.Predicate;
-import java.util.stream.Collectors;
 
 public class Filter {
-    public static List<Integer> selectPerfect(List<Integer> numbers) {
-        return filteredNumbers(numbers, Filter::isPerfect);
+
+    public static final Predicate<Integer> EVEN = Filter::isEven;
+    public static final Predicate<Integer> PERFECT = Filter::isPerfect;
+
+
+    // Integer -> Boolean
+    private static boolean isPerfect(int number) {
+        if (number <= 0)
+            return false;
+
+        return sum(factors(number)) - number == number;
+
     }
 
-    private static boolean isPerfect(int number) {
-        if (number > 0) {
-            List<Integer> factors = new ArrayList<>();
-            for (int i = 1; i <= number; i++) {
-                if (number % i == 0) {
-                    factors.add(i);
+    private static int sum(List<Integer> numbers) {
+        int sum = 0;
+        for (Integer number : numbers) {
+            sum += number;
+        }
+        return sum;
+    }
+
+    private static List<Integer> factors(int number) {
+        List<Integer> factors = new ArrayList<>();
+        for (int divisor = 1; divisor <= number; divisor++) {
+            if (number % divisor == 0) {
+                factors.add(divisor);
+            }
+        }
+        return factors;
+    }
+
+    public static List<Integer> select(final List<Integer> numbers, Predicate<Integer> ... predicates) {
+        List<Integer> filteredNumbers;
+        List<Integer> temp = numbers;
+        for (Predicate<Integer> predicate: predicates){
+            filteredNumbers = new ArrayList<>();
+            for (Integer number : temp) {
+                if (predicate.test(number)) {
+                    filteredNumbers.add(number);
                 }
             }
-            // Sum of factors
-            int sumOfFactors = 0;
-            for (Integer i : factors) {
-                sumOfFactors += i;
-            }
-            // It is a perfect number if the difference between sum of factors and the
-            // number is equal to the number itself
-            return sumOfFactors - number == number;
+            temp = filteredNumbers;
         }
-        return false;
+        return temp;
+
+        /*
+         * Arrays.stream(predicates).allMatch(t -> t.test(s))
+         */
+
     }
 
-
-
-    public static List<Integer> selectEvens(List<Integer> numbers) {
-        return filteredNumbers(numbers, Filter::isEven);
-    }
-
-    private static List<Integer> filteredNumbers(List<Integer> numbers, Predicate<Integer> predicate) {
-        List<Integer> filteredNumbers = new ArrayList<>();
-        for (Integer number : numbers) {
-            if (predicate.test(number)) {
-                filteredNumbers.add(number);
-            }
-        }
-        return filteredNumbers;
-    }
-
-    public static boolean isEven(Integer number){
+    // Integer -> Boolean
+    private static boolean isEven(Integer number) {
         return number % 2 == 0;
     }
 
-    public static List<Integer> selectEvenAndPerfect(List<Integer> numbers){
-        return numbers.stream().filter(n -> isEven(n) && isPerfect(n)).collect(Collectors.toList());
-    }
+
 }
